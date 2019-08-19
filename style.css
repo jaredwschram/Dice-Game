@@ -141,9 +141,17 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice {
+.dice1 {
     position: absolute;
-    left: 50%;
+    left: 60%;
+    top: 178px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+.dice2 {
+    position: absolute;
+    right: 50%;
     top: 178px;
     transform: translateX(-50%);
     height: 100px;
@@ -171,7 +179,18 @@ label{
     text-transform: uppercase;
     font-weight: 300;
 }
-.new-button{
+.targetScoreBtn{
     position: absolute;
     margin-left: 20%;
+}
+.alert{
+    position: absolute;
+    left:35%;
+    top:95px;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-style: bold;
+    color:#EB4D4D;
 }

@@ -30,12 +30,15 @@
             </div>
             <label for="goal">Target Score: </label>
             <input type="text" name="goal" id="targetScore" required placeholder="Target Score">
-            <input class="new-button" type="button" name="goalSubmit" id="targetScoreBtn" value="Enter Target Score">
+            <input class="targetScoreBtn" type="button" id="targetScoreBtn" value="Enter Target Score">
             <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
             <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
-            
-            <img src="dice-5.png" alt="Dice" class="dice">
+            <div><a class="alert" id="alert">Please Enter a Target Score</a></div>
+            <div>
+                <div><img src="dice-5.png" alt="Dice" class="dice1"></div>
+                <div><img src="dice-6.png" alt="Dice" class="dice2"></div>
+            </div>
         </div>
         
         <script src="app.js"></script>
