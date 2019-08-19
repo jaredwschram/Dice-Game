@@ -1,5 +1,4 @@
-var scores, roundScore, activePlayer, dice, gamePlaying, lastDice;
-
+var scores, roundScore, activePlayer, dice, gamePlaying, lastDice, targetScore;
 init();
 //Making the roll dice button work
 document.querySelector('.btn-roll').addEventListener('click', function(){
@@ -10,9 +9,6 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         var diceDOM = document.querySelector('.dice')
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
-        console.log(dice + " - current");
-        console.log(lastDice + " - last");
-        console.log('------');
         if(dice !== 1){
             if(lastDice === 6 && dice === 6){
                 scores[activePlayer] = 0;
@@ -36,7 +32,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
         //Update UI with new current player global score
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         //Check if player won game
-        if(scores[activePlayer] >= 100)    {
+        if(scores[activePlayer] >= targetScore)    {
         document.querySelector('.dice').classList.toggle('active');
         document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner')
@@ -81,4 +77,7 @@ function init(){
     document.querySelector('.player-0-panel').classList.add('active')
 }
 
+document.getElementById("targetScoreBtn").addEventListener('click',function(){
+    targetScore = document.getElementById("targetScore").value
+});
 document.querySelector('.btn-new').addEventListener('click', init);
