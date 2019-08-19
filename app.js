@@ -1,4 +1,4 @@
-var scores, roundScore, activePlayer, dice, gamePlaying;
+var scores, roundScore, activePlayer, dice, gamePlaying, lastDice;
 
 init();
 //Making the roll dice button work
@@ -10,10 +10,19 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         var diceDOM = document.querySelector('.dice')
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
+        console.log(dice + " - current");
+        console.log(lastDice + " - last");
+        console.log('------');
         if(dice !== 1){
-            //Add score
-            roundScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+            if(lastDice === 6 && dice === 6){
+                scores[activePlayer] = 0;
+                document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+                nextPlayer();
+            }else{
+                roundScore += dice;
+                document.querySelector('#current-' + activePlayer).textContent = roundScore;
+            }
+            lastDice = dice;
         }else{
             nextPlayer();
         }
@@ -45,6 +54,7 @@ function nextPlayer(){
     //Next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
+    lastDice = null;
     document.getElementById('current-0').textContent = 0;
     document.getElementById('current-1').textContent = 0;
     document.querySelector('.player-0-panel').classList.toggle('active');
