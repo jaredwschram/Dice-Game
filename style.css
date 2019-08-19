@@ -143,7 +143,7 @@ i {
 
 .dice1 {
     position: absolute;
-    left: 60%;
+    right: 50%;
     top: 178px;
     transform: translateX(-50%);
     height: 100px;
@@ -151,7 +151,7 @@ i {
 }
 .dice2 {
     position: absolute;
-    right: 50%;
+    left: 60%;
     top: 178px;
     transform: translateX(-50%);
     height: 100px;

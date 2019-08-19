@@ -1,29 +1,36 @@
-var scores, roundScore, activePlayer, dice, gamePlaying, lastDice, targetScore, alertMsg;
+var scores, roundScore, activePlayer, dice1, dice2, gamePlaying, lastDice1, lastDice2, targetScore, alertMsg;
 init();
 //Making the roll dice button work
 document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying){
         //Generate a random number
-        var dice = Math.floor(Math.random() * 6) + 1
-        console.log(dice);
-        console.log(lastDice);
-        console.log('------');
+        var dice1 = Math.floor(Math.random() * 6) + 1
+        var dice2 = Math.floor(Math.random() * 6) + 1
+        console.log(dice1);
+        console.log(lastDice1);
+        console.log('---Separate-Dice----')
+        console.log(dice2);
+        console.log(lastDice2);
+        console.log('---End---');
         if(targetScore !== undefined){
-            if(dice !== 1){
-                if(lastDice === 6 && dice === 6){
+            if(dice1 !== 1 && dice2 !== 1){
+                if((lastDice1 === 6 && dice1 === 6) ){
                     scores[activePlayer] = 0;
                     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
                     nextPlayer();
                 }else{
                     //Display dice result and add values to current round score
-                    var diceDOM = document.querySelector('.dice1')
-                    diceDOM.style.display = 'block';
-                    diceDOM.src = 'dice-' + dice + '.png';
-                    roundScore += dice;
+                    var diceDOM1 = document.querySelector('.dice1')
+                    var diceDOM2 = document.querySelector('.dice2')
+                    diceDOM1.style.display = 'block';
+                    diceDOM2.style.display = 'block';
+                    diceDOM1.src = 'dice-' + dice1 + '.png';
+                    diceDOM2.src = 'dice-' + dice2 + '.png';
+                    roundScore += (dice1 + dice2) ;
                     document.querySelector('#current-' + activePlayer).textContent = roundScore;
                 }
-                lastDice = dice;
-
+                lastDice1 = dice1;
+                lastDice2 = dice2;
             }else{
                 nextPlayer();
             }
@@ -59,12 +66,14 @@ function nextPlayer(){
     //Next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
-    lastDice = null;
+    lastDice1 = null;
+    lastDice2 = null;
     document.getElementById('current-0').textContent = 0;
     document.getElementById('current-1').textContent = 0;
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
     document.querySelector('.dice1').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
 }
 //Reset or New game - clears everything and restarts game.
 function init(){
@@ -72,6 +81,8 @@ function init(){
     activePlayer = 0;
     roundScore = 0;
     gamePlaying = true;
+    lastDice1 = null;
+    lastDice2 = null;
     document.getElementById('alert').style.display = 'none';
     document.getElementById('targetScore').value = ""
     document.querySelector('.dice1').style.display = 'none';
