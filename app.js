@@ -7,19 +7,12 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         //Generate a random number
         var dice1 = Math.floor(Math.random() * 6) + 1
         var dice2 = Math.floor(Math.random() * 6) + 1
-        console.log("Current Dice1 - " + dice1);
-        console.log("Previous Dice1 - " + lastDice1);
-        console.log('---Separate-Dice----')
-        console.log("Current Dice2 - " + dice2);
-        console.log("Previous Dice2 - " + lastDice2);
-        console.log('------------End------------');
-        //Var same = [ var1, var2, var3, var4... ].reduce((c,n) => (n==x && c +1) || c, 0)
+        //Storing all the dice in an array and counting how many times 6 is found
         var diceArray = [dice1, lastDice1, dice2, lastDice2]
         totalSixes = diceArray.reduce(function(n, val){
             six = 6;
             return n + (val === six);
         },0);
-        console.log(totalSixes);
         if(targetScore !== undefined){
             if(dice1 !== 1 && dice2 !== 1){
                 if((totalSixes >= 2) ){
