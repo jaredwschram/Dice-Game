@@ -1,20 +1,28 @@
 var scores, roundScore, activePlayer, dice1, dice2, gamePlaying, lastDice1, lastDice2, targetScore, alertMsg;
 init();
+
 //Making the roll dice button work
 document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying){
         //Generate a random number
         var dice1 = Math.floor(Math.random() * 6) + 1
         var dice2 = Math.floor(Math.random() * 6) + 1
-        console.log(dice1);
-        console.log(lastDice1);
+        console.log("Current Dice1 - " + dice1);
+        console.log("Previous Dice1 - " + lastDice1);
         console.log('---Separate-Dice----')
-        console.log(dice2);
-        console.log(lastDice2);
-        console.log('---End---');
+        console.log("Current Dice2 - " + dice2);
+        console.log("Previous Dice2 - " + lastDice2);
+        console.log('------------End------------');
+        //Var same = [ var1, var2, var3, var4... ].reduce((c,n) => (n==x && c +1) || c, 0)
+        var diceArray = [dice1, lastDice1, dice2, lastDice2]
+        totalSixes = diceArray.reduce(function(n, val){
+            six = 6;
+            return n + (val === six);
+        },0);
+        console.log(totalSixes);
         if(targetScore !== undefined){
             if(dice1 !== 1 && dice2 !== 1){
-                if((lastDice1 === 6 && dice1 === 6) ){
+                if((totalSixes >= 2) ){
                     scores[activePlayer] = 0;
                     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
                     nextPlayer();
